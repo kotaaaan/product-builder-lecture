@@ -7,6 +7,19 @@
     --button-bg: oklch(0.6 0.2 280);
     --button-hover-bg: oklch(0.65 0.2 280);
     --button-text-color: oklch(0.98 0.01 280);
+    --container-bg: oklch(1 0 0 / 0.1);
+    --container-border: oklch(1 0 0 / 0.2);
+}
+
+body.dark-mode {
+    --background-start: oklch(0.15 0.02 250);
+    --background-end: oklch(0.1 0.05 280);
+    --text-color: oklch(0.95 0.02 250);
+    --shadow-color: oklch(0 0 0 / 0.8);
+    --button-bg: oklch(0.4 0.15 280);
+    --button-hover-bg: oklch(0.45 0.15 280);
+    --container-bg: oklch(0 0 0 / 0.4);
+    --container-border: oklch(1 0 0 / 0.1);
 }
 
 body {
@@ -21,6 +34,7 @@ body {
     color: var(--text-color);
     overflow: hidden;
     position: relative;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 body::before {
@@ -37,12 +51,13 @@ body::before {
 
 .container {
     text-align: center;
-    background: oklch(1 0 0 / 0.1);
+    background: var(--container-bg);
     padding: 2.5rem 4rem;
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 15px 30px var(--shadow-color);
-    border: 1px solid oklch(1 0 0 / 0.2);
+    border: 1px solid var(--container-border);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
 h1 {
@@ -71,7 +86,7 @@ h1 {
     font-weight: 700;
     color: white;
     box-shadow: 0 5px 15px var(--shadow-color);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     transform-style: preserve-3d;
     animation: appear 0.5s backwards;
 }
@@ -111,4 +126,31 @@ h1 {
 #generate-btn:active {
     transform: translateY(0);
     box-shadow: 0 5px 15px oklch(0.6 0.2 280 / 0.4);
+}
+
+.theme-toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-toggle-btn {
+    background: var(--container-bg);
+    border: 1px solid var(--container-border);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#theme-toggle-btn:hover {
+    transform: scale(1.1);
 }

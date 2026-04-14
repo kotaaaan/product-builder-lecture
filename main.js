@@ -1,5 +1,20 @@
 const numbersContainer = document.getElementById('numbers-container');
 const generateBtn = document.getElementById('generate-btn');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+
+// Theme logic
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+}
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
 
 const colors = [
     'oklch(0.6 0.2 30)', // Red-ish
@@ -54,5 +69,6 @@ styleSheet.innerText = `
 document.head.appendChild(styleSheet);
 
 
-// Generate numbers on initial load
+// Initialize theme and generate numbers on initial load
+initTheme();
 generateNumbers();
