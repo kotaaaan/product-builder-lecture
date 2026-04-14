@@ -1,1 +1,114 @@
-/* Add styles here */
+:root {
+    --font-family: 'Noto Sans KR', sans-serif;
+    --background-start: oklch(0.95 0.05 250);
+    --background-end: oklch(0.85 0.1 280);
+    --text-color: oklch(0.2 0.05 250);
+    --shadow-color: oklch(0.5 0.1 280 / 0.5);
+    --button-bg: oklch(0.6 0.2 280);
+    --button-hover-bg: oklch(0.65 0.2 280);
+    --button-text-color: oklch(0.98 0.01 280);
+}
+
+body {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    background-attachment: fixed;
+    color: var(--text-color);
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18.277L18.277 11 88.243 81.046 81.046 88.243zM81.046 11L11 81.046l7.231 7.197L88.243 18.23z" fill="%239C92AC" fill-opacity="0.05" fill-rule="evenodd"/%3E%3C/svg%3E');
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    background: oklch(1 0 0 / 0.1);
+    padding: 2.5rem 4rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+    border: 1px solid oklch(1 0 0 / 0.2);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px oklch(0 0 0 / 0.1);
+}
+
+#numbers-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    perspective: 800px;
+}
+
+.number-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform-style: preserve-3d;
+    animation: appear 0.5s backwards;
+}
+
+@keyframes appear {
+    from {
+        transform: scale(0) rotateY(180deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+
+#generate-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    font-weight: 700;
+    color: var(--button-text-color);
+    background: var(--button-bg);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 5px 15px oklch(0.6 0.2 280 / 0.4);
+}
+
+#generate-btn:hover {
+    transform: translateY(-3px);
+    background: var(--button-hover-bg);
+    box-shadow: 0 8px 20px oklch(0.65 0.2 280 / 0.5);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px oklch(0.6 0.2 280 / 0.4);
+}
